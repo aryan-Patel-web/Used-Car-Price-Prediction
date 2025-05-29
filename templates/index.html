@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Price Prediction</title>
+</head>
+<body>
+    <h2>Car Price Prediction</h2>
+
+    <form method="post">
+        Vehicle Age: <input type="number" name="vehicle_age" required><br><br>
+        Kilometers Driven: <input type="number" name="km_driven" required><br><br>
+        
+        Fuel Type:
+        <select name="fuel_type" required>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+            <option value="CNG">CNG</option>
+            <option value="LPG">LPG</option>
+            <option value="Electric">Electric</option>
+        </select><br><br>
+
+        Seller Type:
+        <select name="seller_type" required>
+            <option value="Individual">Individual</option>
+            <option value="Dealer">Dealer</option>
+            <option value="Trustmark Dealer">Trustmark Dealer</option>
+        </select><br><br>
+
+        Transmission Type:
+        <select name="transmission_type" required>
+            <option value="Manual">Manual</option>
+            <option value="Automatic">Automatic</option>
+        </select><br><br>
+
+        Model:
+        <select name="model" required>
+            {% for name in model_names %}
+                <option value="{{ name }}">{{ name }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        Mileage (km/l or km/kg): <input type="number" step="0.1" name="mileage" required><br><br>
+        Engine (cc): <input type="number" name="engine" required><br><br>
+        Max Power (bhp): <input type="number" step="0.1" name="max_power" required><br><br>
+        Seats: <input type="number" name="seats" required><br><br>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+        <h3>Predicted Price: ₹{{ prediction }}</h3>
+    {% endif %}
+</body>
+</html>
